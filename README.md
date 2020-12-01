@@ -1,4 +1,4 @@
-# Matplotlib with Pandas Dataframe Basics 
+# Matplotlib with Pandas Dataframe Basics with Presidential Election Data
 
 By Claire Morehouse
 
