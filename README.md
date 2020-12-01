@@ -58,9 +58,13 @@ What if we want to sort the dataframe based on the ranking value? We can achieve
 ```
 df.sort_values(by=['Rank'])
 ```
+And you get the following output, with the states ranked by value.  
 
+![](images/rank.png)
 
 
 ## Section 2: The basics of matplotlib 
 
 ## Section 3: Application
+
+
