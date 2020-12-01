@@ -26,11 +26,11 @@ import pandas as pd
 
 Next, we will create a dataframe object from a dictionary. To create a dataframe, use Python dictionary of lists, the dictionary keys will be used as column headers and the values in each list as columns. 
 
-'''
+```
 data = {'ME' : 3, 'VT' : 4, 'NH' : 5, 'CT' : 6, 'RI' : 1} 
 df = pd.DataFrame(list(data.items())) 
 df
-'''
+```
 
 We can accomplish the same output with the code below, where we create a DataFrame from Dictionary using default Constructor of pandas.Dataframe class
 
@@ -38,7 +38,10 @@ We can accomplish the same output with the code below, where we create a DataFra
 data = {'New England States': ['ME', 'VT', 'NH', 'MA', 'CT', 'RI'], 'Rank': [3, 4, 5, 2, 6, 1]}
 pd.DataFrame.from_dict(data)
 ```
-Either method, we've created a simple dataframe where column one is the abrievations for the six New England, and column two is my own personal rankings for each state (1 being the best, 6 the worst) (full disclosure: I'm from Connecticut). 
+
+Either method, we've created a simple dataframe where column one is the abrievations for the six New England, and column two is my own personal rankings for each state (1 being the best, 6 the worst) (full disclosure: I'm from Connecticut). Your output should look like this:
+
+
 
 You may notice the output to the left is a column of numbers 1 - 6. This is the index. 
 
