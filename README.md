@@ -67,4 +67,6 @@ And you get the following output, with the states ranked by value.
 
 ## Section 3: Application
 
-Now, let's take these basics and apply them to an application. For this tutorial, we are using U.S. President Data from 1976 - 2018 from MIT Election Data Science Lab found [here](https://electionlab.mit.edu/data) and U.S. House House Data from 1976 - 2018. The data can be found in the repository in the folder "data" and comes in the form of two csv files. 
+Now, let's take these basics and apply them to an application. For this tutorial, we are using U.S. President Data from 1976 - 2018 from MIT Election Data Science Lab found [here](https://electionlab.mit.edu/data) in csv format. When you open up the csv file in excel; the raw data looks like this:
+
+
