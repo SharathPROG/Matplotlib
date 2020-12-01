@@ -12,9 +12,7 @@ DataFrame is a 2-dimensional labeled data structure with columns of potentially 
 
 ![](images/dataframe.png)
 
-Sources for this section can be found here:
-https://pandas.pydata.org/pandas-docs/stable/user_guide/dsintro.html#dsintro
-https://www.learnpython.org/en/Pandas_Basics
+Sources for this section can be found [here](https://pandas.pydata.org/pandas-docs/stable/user_guide/dsintro.html#dsintro) and [here](https://www.learnpython.org/en/Pandas_Basics) and [here](https://realpython.com/pandas-dataframe/)
 
 Let's try some basic coding with Pandas Dataframe. 
 
@@ -39,16 +37,28 @@ data = {'New England States': ['ME', 'VT', 'NH', 'MA', 'CT', 'RI'], 'Rank': [3, 
 pd.DataFrame.from_dict(data)
 ```
 
-Either method, we've created a simple dataframe where column one is the abrievations for the six New England, and column two is my own personal rankings for each state (1 being the best, 6 the worst) (full disclosure: I'm from Connecticut). Your output should look like this:
+Either method, we've created a simple dataframe where column one is the abrievations for the six New England, and column two is my own personal rankings for each state (1 being the best, 6 the worst) (full disclosure: I'm from Connecticut). The variable data is a Python variable that refers to the dictionary that holds your candidate data. It also contains the labels of the columns:
+
+Your output should look like this:
 
 ![](images/dataframeoutput.png)
 
+You may notice the output to the left is a column of numbers 1 - 6. This is the index. But what if you wanted to do a user-defined index with letters instead?
 
-You may notice the output to the left is a column of numbers 1 - 6. This is the index. 
+```
+data = {'New England States': ['ME', 'VT', 'NH', 'MA', 'CT', 'RI'], 'Rank': [3, 4, 5, 2, 6, 1]} 
+df = pd.DataFrame(data, index = ['a', 'b', 'c', 'd', 'e', 'f']) 
+df 
+```
 
+Now that we have a dictionary, what types of things can we do with it?
 
+What if you just want one specific column from the dataframe? You can do this wit the following code:
 
-
+```
+states = df['New England States']
+states
+```
 
 ## Section 2: The basics of matplotlib 
 
