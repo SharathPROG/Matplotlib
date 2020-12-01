@@ -17,10 +17,10 @@ https://www.learnpython.org/en/Pandas_Basics
 Let's try some basic coding with Pandas Dataframe. 
 
 First, you need to import NumPy and load pandas.
-'''
+```
 import numpy as np
 import pandas as pd
-'''
+```
 
 Next, we will create a dataframe. There are several ways to build a dataframe, but we will use dictionaries. 
 
