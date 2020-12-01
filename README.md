@@ -8,7 +8,7 @@ By Claire Morehouse
 
 Pandas dataframe is a package commonly used to deal with data analysis. Pandas is a high-level data manipulation tool developed by Wes McKinney. It is built on the Numpy package and its key data structure is called the DataFrame.The documentation for the pandas dataframe came be found [here](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html). Using pandas dataframe simplifies the loading of data from external sources such as text files and databases, as well as providing ways of analysing and manipulating data once it is loaded into your computer. The features provided in pandas automate and simplify a lot of the common tasks that would take many lines of code to write in the basic Python langauge. Pandas is best suited for structured, labelled data, in other words, tabular data, that has headings associated with each column of data. 
 
-DataFrame is a 2-dimensional labeled data structure with columns of potentially different types. The DataFrame represents tabular data, soft of like a spreadsheet. DataFrames are organised into colums (each of which is a Series), and each column can store a single data-type, such as floating point numbers, strings, boolean values etc. DataFrames can be indexed by either their row or column names. DataFrames allow you to store and manipulate tabular data in rows of observations and columns of variables.
+DataFrame is a 2-dimensional labeled data structure with columns of potentially different types. The DataFrame represents tabular data, soft of like a spreadsheet. DataFrames are organised into colums (each of which is a Series), and each column can store a single data-type, such as floating point numbers, strings, boolean values etc. DataFrames can be indexed by either their row or column names. Each column of a Pandas DataFrame is an instance of pandas.Series, a structure that holds one-dimensional data and their labels.DataFrames allow you to store and manipulate tabular data in rows of observations and columns of variables.
 
 ![](images/dataframe.png)
 
@@ -53,12 +53,13 @@ df
 
 Now that we have a dictionary, what types of things can we do with it?
 
-What if you just want one specific column from the dataframe? You can do this wit the following code:
+What if we want to sort the dataframe based on the ranking value? We can achieve this with the following code:
 
 ```
-states = df['New England States']
-states
+df.sort_values(by=['Rank'])
 ```
+
+
 
 ## Section 2: The basics of matplotlib 
 
