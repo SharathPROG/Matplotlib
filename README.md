@@ -10,7 +10,7 @@ Pandas dataframe is a package commonly used to deal with data analysis. Pandas i
 
 DataFrame is a 2-dimensional labeled data structure with columns of potentially different types. The DataFrame represents tabular data, soft of like a spreadsheet. DataFrames are organised into colums (each of which is a Series), and each column can store a single data-type, such as floating point numbers, strings, boolean values etc. DataFrames can be indexed by either their row or column names. DataFrames allow you to store and manipulate tabular data in rows of observations and columns of variables.
 
-Image
+![](images/dataframe.png)
 
 Sources for this section can be found here:
 https://pandas.pydata.org/pandas-docs/stable/user_guide/dsintro.html#dsintro
@@ -41,6 +41,7 @@ pd.DataFrame.from_dict(data)
 
 Either method, we've created a simple dataframe where column one is the abrievations for the six New England, and column two is my own personal rankings for each state (1 being the best, 6 the worst) (full disclosure: I'm from Connecticut). Your output should look like this:
 
+![](images/dataframeoutput.png)
 
 
 You may notice the output to the left is a column of numbers 1 - 6. This is the index. 
