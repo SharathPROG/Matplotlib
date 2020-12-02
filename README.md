@@ -2,7 +2,10 @@
 
 By Claire Morehouse
 
-## Objectives
+## Background and Objectives
+
+Tools
+Google Colab
 
 ## Section 1: The basics of Pandas Dataframe 
 
@@ -68,5 +71,27 @@ And you get the following output, with the states ranked by value.
 ## Section 3: Application
 
 Now, let's take these basics and apply them to an application. For this tutorial, we are using U.S. President Data from 1976 - 2018 from MIT Election Data Science Lab found [here](https://electionlab.mit.edu/data) in csv format. When you open up the csv file in excel; the raw data looks like this:
+
+![](images/excel.png)
+
+As you can see, csv contains columns year, state, state-po (state's abbrievation), state_fips, state_cen, state_ic, office, candidate, party, writein, candidatevotes, total votes, version and notes. The documentation for these variables can be found [here](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/42MVDX). For this tutorial, we are particularly interested in the variables year, state, party, candidatevotes and totalvotes and the data visuals we can create with these variables. 
+
+First, we need to create a pandas dataframe from the csv file. To do this, we use the following code to set the variable "df" for dataframe equal to the csv file reader. This dataset is very large, so we can use .head() to print the first few items and .tail() to print the last few items:
+
+```
+from google.colab import files
+uploaded = files.upload()
+df = pd.read_csv("1976-2016-president.csv")
+print(df.head(3))
+print(df.tail(3))
+```
+
+In this case, index_col=0 specifies that the row labels are located in the first column of the CSV file. 
+
+Now, depending on the specific data visualizations we want from this dataset, we need to manipulate the dataframe to then use with matplotlib. 
+
+First, let's a chart that shows the state where Hillary goes the greatest share of the total votes and where she got the smallest share of the total votes. 
+
+
 
 
