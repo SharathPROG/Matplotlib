@@ -66,32 +66,146 @@ And you get the following output, with the states ranked by value.
 ![](images/rank.png)
 
 
-## Section 2: The basics of matplotlib 
+## Section 2: The basics of the python library matplotlib 
+
+Matplotlib a comprehensive library for creating static, animated, and interactive visualizations in Python. This tutorial is for beginners, and thus we will only explore how to create static visualizations. 
+
+In order to work with the library matplotlib, you first need to important the necessary packages/modules; numpy and matplotlib:
+
+```
+# Import the necessary packages and modules
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd 
+```
+
+The next basic rule of thumb is to set up the data you are going to be using. In the application section, we will use data derived from a csv file and set up as a pandas dataframe. Here, however, we will create some simple data that we can create some sample plots with. 
+
+
+
+
 
 ## Section 3: Application
 
-Now, let's take these basics and apply them to an application. For this tutorial, we are using U.S. President Data from 1976 - 2018 from MIT Election Data Science Lab found [here](https://electionlab.mit.edu/data) in csv format. When you open up the csv file in excel; the raw data looks like this:
+Now, let's take these basics and apply them in practice. This tutorial will use panda dataframes to create data visualization with the matplotlib python library. We will create four different plots: a bar chart, a pie chart, a box plot and a line plot. The code for each of plots is specific to the data used in this tutorial, but the techniques are applicable to creating visualizations from other data sources. 
+
+### Data
+
+For this tutorial, we are using U.S. President Data from 1976 - 2018 from MIT Election Data Science Lab found [here](https://electionlab.mit.edu/data) in csv format. When you open up the csv file in excel; the raw data looks like this:
 
 ![](images/excel.png)
 
-As you can see, csv contains columns year, state, state-po (state's abbrievation), state_fips, state_cen, state_ic, office, candidate, party, writein, candidatevotes, total votes, version and notes. The documentation for these variables can be found [here](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/42MVDX). For this tutorial, we are particularly interested in the variables year, state, party, candidatevotes and totalvotes and the data visuals we can create with these variables. 
+As you can see, csv contains columns year, state, state-po (state's abbrievation), state_fips, state_cen, state_ic, office, candidate, party, writein, candidatevotes, total votes, version and notes. The documentation for these variables can be found [here](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/42MVDX). For this tutorial, we are particularly interested in the variables year, state, party, candidatevotes and totalvotes and the data visuals we can create with these variables. You can download the csv directly from this repository in the data folder. 
 
-First, we need to create a pandas dataframe from the csv file. To do this, we use the following code to set the variable "df" for dataframe equal to the csv file reader. This dataset is very large, so we can use .head() to print the first few items and .tail() to print the last few items:
+### Tutorial 
+
+Let's first import the csv file with the data. After running this in colab, you will need to open up your file from your computer. 
 
 ```
 from google.colab import files
 uploaded = files.upload()
+```
+
+First, we need to create a pandas dataframe from the csv file. To do this, we use the following code to set the variable "df" for dataframe equal to the csv file reader. This dataset is very large, so we can use .head() to print the first few items and .tail() to print the last few items:
+
+```
 df = pd.read_csv("1976-2016-president.csv")
 print(df.head(3))
 print(df.tail(3))
 ```
 
-In this case, index_col=0 specifies that the row labels are located in the first column of the CSV file. 
+```
+df_votes = df[(df["year"] == 2016)]
 
-Now, depending on the specific data visualizations we want from this dataset, we need to manipulate the dataframe to then use with matplotlib. 
+data = df_votes.loc[(df_votes['party'] == "democrat") | (df['party'] == "republican")]
+table = pd.pivot_table(data=data,index='party',values='candidatevotes',aggfunc=np.sum)
+table
 
-First, let's a chart that shows the state where Hillary goes the greatest share of the total votes and where she got the smallest share of the total votes. 
 
+from matplotlib.ticker import FuncFormatter
+fig, ax = plt.subplots(figsize=(10, 6))
+
+#bar graph
+plt.bar(table.index,table['candidatevotes'])
+
+#xticks 
+plt.xticks() 
+
+#x-axis labels 
+plt.xlabel('Party') 
+
+#y-axis labels 
+plt.ylabel('Number of Votes') 
+
+#plot title 
+plt.title('Total Votes 2016 Presidential Election') 
+
+from matplotlib.ticker import FuncFormatter
+
+def number_formatter(number, pos=None):
+    """Convert a number into a human readable format."""
+    magnitude = 0
+    while abs(number) >= 1000:
+        magnitude += 1
+        number /= 1000.0
+    return '%.1f%s' % (number, ['', 'K', 'M', 'B', 'T', 'Q'][magnitude])
+
+ax.yaxis.set_major_formatter(FuncFormatter(number_formatter))
+
+plt.show()
+```
+```
+# Create time series chart of total votes from 1976 - 2016
+import matplotlib.pyplot as plt
+
+df_line_dem = df[(df["state"] == 'Massachusetts') & (df["party"] == "democrat")]
+df_line_dem['Voteshare'] = df_line_dem['candidatevotes'] / df_line_dem['totalvotes']
+df_line_rep = df[(df["state"] == 'Massachusetts') & (df["party"] == "republican")]
+df_line_rep['Voteshare'] = df_line_rep['candidatevotes'] / df_line_rep['totalvotes']
+
+x1 = df_line_dem['year']
+y1 = df_line_dem['Voteshare']
+
+x2 = df_line_rep['year']
+y2 = df_line_rep['Voteshare']
+
+
+plt.plot(x1, y1, label = "Democrat", color = "blue")
+plt.plot(x2, y2, label = "Republican", color = "red")
+plt.xlabel('Year')
+colors = ('blue', 'red')
+# Set the y axis label of the current axis.
+plt.ylabel('Percentage of Vote (%)')
+# Set a title of the current axes.
+plt.title('Proportion of Presidential Vote, 1976 - 2016')
+# show a legend on the plot
+plt.legend()
+# Display a figure.
+plt.show()
+```
+
+```
+# Create pie chart that shows for a particular state in a particular year, share of vote totals
+import matplotlib.pyplot as plt
+
+# Create dataframe from the dataset that for the state of massaschutts has for 2016
+df_pie_chart = df[(df["year"] == 2016) & (df["state"] == "Massachusetts")]
+# Create new Variable 
+df_pie_chart['Voteshare'] = df_pie_chart['candidatevotes'] / df_pie_chart['totalvotes']
+
+df_pie_chart
+
+labels = df_pie_chart['candidate']
+sizes = df_pie_chart['Voteshare']
+colors = ['blue', 'red', 'yellow', 'white', 'pink', 'green', 'grey']
+fig1, ax1 = plt.subplots(figsize=(10, 6))
+ax1.pie(sizes, shadow=True, startangle=90, colors = colors)
+ax1.axis('equal')
+plt.title("Presidential Share of Vote in MA, 2016")
+plt.legend( loc = 3, labels=['%s, %1.3f %%' % (l, s) for l, s in zip(labels, sizes)])
+plt.show()
+plt.savefig('Mass2016Vote.png')
+```
 
 
 
