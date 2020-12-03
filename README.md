@@ -15,7 +15,9 @@ Specifically, this tutorial aims to achieve three things:
 
 A lot of the tutorials that currently exist in this department do not operate from a a beginner's level of python, and that is what I hope to achieve with this tutorial. In addition, I hope you find the election data visualizations created with this code interesting, and the skills applicable to your own projects!
 
-Tech used for this tutorial: Google Colab, matplotlib python library, numpy python library, Pandas Dataframe
+_Tech used for this tutorial: Google Colab, matplotlib python library, numpy python library, pandas package_ 
+
+Code for this tutorial can be found in the code folder. Happy Coding! 
 
 ## Section 1: The basics of Pandas Dataframe 
 
@@ -352,8 +354,6 @@ And... Voila! A Line graph from 1976 - 2016. You can see where Reaganism made a 
 
 ![This is the output](images/linegraph.png)
 
-## Acknowledgements and 
+## Acknowledgements 
 
-To access the .ipynb files containing the code from this material, please see the folder in this repo titled "Code". Thank you!
-
-And thank you to my professor of my introductory coding class, Shadrock Roberts!
+Thank you to my professor of my introductory coding class, Shadrock Roberts!
