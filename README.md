@@ -172,7 +172,7 @@ ax.yaxis.set_major_formatter(FuncFormatter(number_formatter))
 
 plt.show()
 ```
-
+![This is the output](images/bargraph.png)
 Next we will create is a pie chart. 
 
 ```
@@ -204,6 +204,7 @@ plt.legend(labels=['%s, %1.3f %%' % (l, s) for l, s in zip(labels, sizes)])
 # show plot
 plt.show()
 ```
+![This is the output](images/piechart2.png)
 Next, let's create a boxplot
 ```
 # Create box plot to compare the democrat verses republic state voter share values in 2016 
@@ -238,6 +239,8 @@ plt.xticks(np.arange(len(labels))+1,labels)
 # show the plot
 plt.show()
 ```
+![This is the output](images/boxplot.png)
+
 Finally, we will create a line chart that shows from 1976 - 2016, the vote share of Republicans and Democrats in the state of Massachusetts.
 ```
 # Create line plot of total votes from 1976 - 2016
@@ -269,5 +272,5 @@ plt.legend()
 # Display a figure.
 plt.show()
 ```
-
+![This is the output](images/linegraph.png)
 
