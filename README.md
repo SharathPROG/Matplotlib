@@ -194,7 +194,7 @@ table
 ```
 Your output should look like this:
 
-
+![](images/cvotes.png)
 
 You may notice Hillary Clinton got almost three million more votes... damn that Electoral College! Now, we'll create a bar chart with matplotlib. We follow the same basic format as in the basics section, just with slightly different formating because we are working with dataframes. The most complicated part of this section is the formating of the y axis, using matplotlib.ticker, to make it so that the values are displayed in the millions. Documentation for matplotlib.ticker can be found [here](https://matplotlib.org/api/ticker_api.html). That particular line of code was taken from Christopher Flynn's blog, link found [here](https://flynn.gg/blog/better-matplotlib-charts/). Note from this code that when using matplotlib, you will run into formating roadblocks all the time depending on the niche output your are trying to accomplish. Luckily, the internet can often give you exactly the answers you are looking for, like in this example. 
 
