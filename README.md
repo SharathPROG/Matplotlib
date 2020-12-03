@@ -147,7 +147,7 @@ Now, let's take these basics and apply them in practice. This tutorial will use 
 
 ### Data
 
-For this tutorial, we are using U.S. President Data from 1976 - 2018 from MIT Election Data Science Lab found [here](https://electionlab.mit.edu/data) in csv format. When you open up the csv file in excel; the raw data looks like this:
+For this tutorial, we are using U.S. President Data from 1976 - 2016 from MIT Election Data Science Lab found [here](https://electionlab.mit.edu/data) in csv format. When you open up the csv file in excel; the raw data looks like this:
 
 ![](images/excel.png)
 
