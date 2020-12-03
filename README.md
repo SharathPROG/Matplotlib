@@ -1,11 +1,21 @@
-# Matplotlib with Pandas Dataframe Basics with Presidential Election Data
+# The Basics of using Pandas Dataframe to create Static Visualizations with Matplotlib
 
-By Claire Morehouse
+Claire Morehouse
+
+Have questions about this tutorial? Email me at: cmorehouse@clarku.edu
 
 ## Background and Objectives
 
-Tools
-Google Colab
+Thank you for visiting my tutorial! This tutorial is designed for a beginner's level coder who is looking to learn about how they can create data visualizations from csv data. 
+
+Specifically, this tutorial aims to achieve three things:
+(1) Give a basic understanding of Pandas Dataframes 
+(2) Give a basic understanding of the matplotlib python library 
+(3) Give a basic understanding of how dataframes can be used to create data visualizations with matplotlib
+
+A lot of the tutorials that currently exist in this department do not operate from a a beginner's level of python, and that is what I hope to achieve with this tutorial. In addition, I hope you find the election data visualizations created with this code interesting, and the skills applicable to your own projects!
+
+Tech used for this tutorial: Google Colab, matplotlib python library, numpy python library, Pandas Dataframe
 
 ## Section 1: The basics of Pandas Dataframe 
 
@@ -19,7 +29,7 @@ Sources for this section can be found [here](https://pandas.pydata.org/pandas-do
 
 Let's try some basic coding with Pandas Dataframe. 
 
-First, you need to import NumPy and load pandas.
+First, you need to the relevant packages. Import NumPy and load pandas with this code: 
 ```
 import numpy as np
 import pandas as pd
@@ -70,8 +80,11 @@ And you get the following output, with the states ranked by value.
 
 Matplotlib a comprehensive library for creating static, animated, and interactive visualizations in Python. This tutorial is for beginners, and thus we will only explore how to create static visualizations. 
 
-In order to work with the library matplotlib, you first need to important the necessary packages/modules; numpy and matplotlib:
+For basic application, I like to break down the process into five parts to using matplotlib when you are trying to create a static data visualization. First, you need to establish or data munge. Second, you need to define your variables. Third, you need to plot those variables. Fourth, you do "all the extra stuff"; like labeling and gridlines. Finaly, you display your plot. Sound easy enough? Let's try it.
 
+Step 1. Import Packages and Create data/Data Munge
+
+First, let's import the necessary packages to work with matplotlib. For this exercise, we really only need to import matplotlib, but let's also import numpy and pandas for practice. 
 ```
 # Import the necessary packages and modules
 import matplotlib.pyplot as plt
@@ -79,11 +92,55 @@ import numpy as np
 import pandas as pd 
 ```
 
-The next basic rule of thumb is to set up the data you are going to be using. In the application section, we will use data derived from a csv file and set up as a pandas dataframe. Here, however, we will create some simple data that we can create some sample plots with. 
+In the application section, we will learn how to take data from a spreadsheet in csv format, and by using dataframes establish variables that are plotted with matplotlib. In this section, however, let's create our own data for simplicity. Since we're creating it ourselves, there's no cleaning necessary. Let's create a perfectly linear line graph. 
+
+```
+
+# Create Data
+Year = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008]
+Age = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+```
+
+Step 2. Define Variables and figure and axes. 
+
+Since we defined our variables in the first section, this is not necessary. In the application section, when we are working with dataframes, we're going to want to define our variables equal to portions of the dataframe. We do however want to write the following code to define the plot size before we plot our data. 
+
+```
+fig, ax = plt.subplots(figsize=(10, 6)) # this creates the plot size
+
+```
+
+Step 3. Let's plot!!
+
+Inside the parantheses, insert your x variable first, comma, and then your y variable. On thing to note is that in the parantheses you also can edit the output of the data. So, if you want the line to be red, you add a comma after the variables with color = "red". 
+
+```
+plt.plot(Year, Age, color = "red")
+```
+
+Step 4. All the extra stuff
+
+Now comes the fun part. Warning: It can also be the most challening if the type of changes your are trying to implement into your visualization are not basic. However, for this application, let's still with some basic labeling, color changes, adding gridlines, and shifting font sizes, and creating the plot size. 
+
+'''
+plt.title('Age by Year', fontsize=14) # create title, and add a comma with your fontsize
+plt.xlabel('Year', fontsize=14) #label your axes
+plt.ylabel('Age', fontsize=14)
+plt.grid(True) # add a grid
+'''
+
+Step 4. Display your creation!
+
+This is done with the function plt.show()
+
+```
+plt.show()
+```
+
+Your output should look something like this:
 
 
-
-
+While we created a line graph in this section, these principles will be applied to each visual we create in the application section. Now that we have the basics, let's move on and see what we can create with some real data! 
 
 ## Section 3: Application
 
@@ -274,3 +331,8 @@ plt.show()
 ```
 ![This is the output](images/linegraph.png)
 
+## Acknowledgements and 
+
+To access the .ipynb files containing the code from this material, please see the folder in this repo titled "Code". Thank you!
+
+And thank you to my professor of my introductory coding class, Shadrock Roberts!
