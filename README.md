@@ -1,17 +1,17 @@
 # The Basics of using Pandas Dataframe to create Static Visualizations with Matplotlib
 
-Claire Morehouse
+_Created by Claire Morehouse_
 
-Have questions about this tutorial? Email me at: cmorehouse@clarku.edu
+Have questions about this tutorial? **Email me at: cmorehouse@clarku.edu
 
 ## Background and Objectives
 
 Thank you for visiting my tutorial! This tutorial is designed for a beginner's level coder who is looking to learn about how they can create data visualizations from csv data. 
 
 Specifically, this tutorial aims to achieve three things:
-(1) Give a basic understanding of Pandas Dataframes 
-(2) Give a basic understanding of the matplotlib python library 
-(3) Give a basic understanding of how dataframes can be used to create data visualizations with matplotlib
+**(1)** Give a basic understanding of Pandas Dataframes 
+**(2)** Give a basic understanding of the matplotlib python library 
+**(3)** Give a basic understanding of how dataframes can be used to create data visualizations with matplotlib
 
 A lot of the tutorials that currently exist in this department do not operate from a a beginner's level of python, and that is what I hope to achieve with this tutorial. In addition, I hope you find the election data visualizations created with this code interesting, and the skills applicable to your own projects!
 
@@ -43,18 +43,19 @@ df = pd.DataFrame(list(data.items()))
 df
 ```
 
-We can accomplish the same output with the code below, where we create a DataFrame from Dictionary using default Constructor of pandas.Dataframe class
+We can accomplish the same output with the code below, where we create a DataFrame from a Dictionary. 
 
 ```
-data = {'New England States': ['ME', 'VT', 'NH', 'MA', 'CT', 'RI'], 'Rank': [3, 4, 5, 2, 6, 1]}
-pd.DataFrame.from_dict(data)
+data = {'New England States': ['ME', 'VT', 'NH', 'MA', 'CT', 'RI'], 'Rank': [3, 4, 5, 2, 6, 1]} 
+df = pd.DataFrame(data)
+df 
 ```
 
-Either method, we've created a simple dataframe where column one is the abrievations for the six New England, and column two is my own personal rankings for each state (1 being the best, 6 the worst) (full disclosure: I'm from Connecticut). The variable data is a Python variable that refers to the dictionary that holds your candidate data. It also contains the labels of the columns:
+Here, we've created a simple dataframe where column one is the abrievations for the six New England, and column two is my own personal rankings for each state (1 being the best, 6 the worst) (full disclosure: I'm from Connecticut). The variable data is a Python variable that refers to the dictionary that holds your rank data. It also contains the labels of the columns. 
 
 Your output should look like this:
 
-![](images/dataframeoutput.png)
+
 
 You may notice the output to the left is a column of numbers 1 - 6. This is the index. But what if you wanted to do a user-defined index with letters instead?
 
@@ -63,8 +64,9 @@ data = {'New England States': ['ME', 'VT', 'NH', 'MA', 'CT', 'RI'], 'Rank': [3, 
 df = pd.DataFrame(data, index = ['a', 'b', 'c', 'd', 'e', 'f']) 
 df 
 ```
+Your output now looks like this: 
 
-Now that we have a dictionary, what types of things can we do with it?
+Notice the difference? Now that we have a dictionary, what types of things can we do with it?
 
 What if we want to sort the dataframe based on the ranking value? We can achieve this with the following code:
 
@@ -75,6 +77,7 @@ And you get the following output, with the states ranked by value.
 
 ![](images/rank.png)
 
+This is a simple example of the many ways once you have a dataframe you can play with it. In the application section, we will delve deeper into dataframes and how you can manipulate them to create data visualizations. 
 
 ## Section 2: The basics of the python library matplotlib 
 
