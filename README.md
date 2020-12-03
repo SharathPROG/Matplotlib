@@ -41,14 +41,6 @@ import pandas as pd
 Next, we will create a dataframe object from a dictionary. To create a dataframe, use Python dictionary of lists, the dictionary keys will be used as column headers and the values in each list as columns. 
 
 ```
-data = {'ME' : 3, 'VT' : 4, 'NH' : 5, 'CT' : 6, 'RI' : 1} 
-df = pd.DataFrame(list(data.items())) 
-df
-```
-
-We can accomplish the same output with the code below, where we create a DataFrame from a Dictionary. 
-
-```
 data = {'New England States': ['ME', 'VT', 'NH', 'MA', 'CT', 'RI'], 'Rank': [3, 4, 5, 2, 6, 1]} 
 df = pd.DataFrame(data)
 df 
@@ -128,12 +120,12 @@ _Step 4. All the extra stuff_
 
 Now comes the fun part. Warning: It can also be the most challening if the type of changes your are trying to implement into your visualization are not basic. However, for this application, let's still with some basic labeling, color changes, adding gridlines, and shifting font sizes, and creating the plot size. 
 
-'''
+```
 plt.title('Age by Year', fontsize=14) # create title, and add a comma with your fontsize
 plt.xlabel('Year', fontsize=14) #label your axes
 plt.ylabel('Age', fontsize=14)
 plt.grid(True) # add a grid
-'''
+```
 
 _Step 4. Display your creation!_
 
