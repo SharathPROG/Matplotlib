@@ -171,7 +171,7 @@ print(df.tail(3))
 ```
 Your output should look like this:
 
-
+![](images/basicoutput.png)
 
 Now we're ready to dive into our visualizations! And what better way to start than with a BAR CHART! This bar chart will compare the total votes Hillary Clinton, the democratic nominee received verses the total votes Donald Trump, the republican candidates, received in 2016. Our first stem is to create a new dataframe from our default dataframe that we created above that only contains rows that in the column "year" the cell contains 2016. So, we are using a conditional. 
 
