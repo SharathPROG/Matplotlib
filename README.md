@@ -113,32 +113,48 @@ df = pd.read_csv("1976-2016-president.csv")
 print(df.head(3))
 print(df.tail(3))
 ```
+First we will create a bar graph that compares the total votes Hillary Clinton, the democratic nominee received verses the total votes Donald Trump, the republican candidates, received in 2016.
 
 ```
+# Create bar chart that shows 
+
+# create dataframe that includes just the data for 2016
 df_votes = df[(df["year"] == 2016)]
 
+# use df.loc to create a pivot table for votes 
 data = df_votes.loc[(df_votes['party'] == "democrat") | (df['party'] == "republican")]
 table = pd.pivot_table(data=data,index='party',values='candidatevotes',aggfunc=np.sum)
 table
+```
+Now, we'll create a bar chart with matplotlib.
 
+```
+# Create bar chart that shows 
 
-from matplotlib.ticker import FuncFormatter
+# create dataframe that includes just the data for 2016
+df_votes = df[(df["year"] == 2016)]
+
+# use df.loc to create a pivot table for votes 
+data = df_votes.loc[(df_votes['party'] == "democrat") | (df['party'] == "republican")]
+table = pd.pivot_table(data=data,index='party',values='candidatevotes',aggfunc=np.sum)
+
+# create plot size
 fig, ax = plt.subplots(figsize=(10, 6))
 
-#bar graph
-plt.bar(table.index,table['candidatevotes'])
-
-#xticks 
-plt.xticks() 
+# plot bar from the pivot table, add colors
+plt.bar(table.index, table['candidatevotes'], color=['blue', 'red'])
 
 #x-axis labels 
-plt.xlabel('Party') 
+plt.xlabel('Party', fontsize = 12) 
 
 #y-axis labels 
-plt.ylabel('Number of Votes') 
+plt.ylabel('Number of Votes', fontsize = 12) 
 
 #plot title 
-plt.title('Total Votes 2016 Presidential Election') 
+plt.title('Total Votes 2016 Presidential Election', fontsize = 15) 
+
+# derived from https://flynn.gg/blog/better-matplotlib-charts/
+# Format numbers on y axis to show in millions
 
 from matplotlib.ticker import FuncFormatter
 
@@ -152,60 +168,106 @@ def number_formatter(number, pos=None):
 
 ax.yaxis.set_major_formatter(FuncFormatter(number_formatter))
 
+# plot show
+
 plt.show()
 ```
+
+Next we will create is a pie chart. 
+
 ```
-# Create time series chart of total votes from 1976 - 2016
+# Create pie chart that shows for a particular state in a particular year, shows share of vote totals
 import matplotlib.pyplot as plt
 
+# Let's choose Massachusetts
+df_pie_chart = df[(df["year"] == 2016) & (df["state"] == "Massachusetts")]
+# Create voteshare column
+df_pie_chart['Voteshare'] = df_pie_chart['candidatevotes'] / df_pie_chart['totalvotes']
+
+
+labels = df_pie_chart['candidate'] #create candidate labels
+sizes = df_pie_chart['Voteshare'] #create vote size label
+colors = ['blue', 'red', 'yellow', 'white', 'pink', 'green', 'grey'] #create colors
+fig1, ax1 = plt.subplots(figsize=(10, 6)) # create plot size
+ax1.pie(sizes, startangle=90, colors = colors) # plot voteshare data, at 90 orientation, colors
+ax1.axis('equal') # center 
+plt.title("Presidential Share of Vote in MA, 2016") # title
+
+# for each item, percent s in python is a way to insert a variable and insert a string, %s insert the name, calculates percentage, %% actually shows percent symbol. 
+# for l, s in zip. l is refering to each label and s is referring to each size 
+
+# create legend, use for loop to do this. %s in python is a way to inserts string, #1.3f formats percentage. l is label, s is size. Zip combines together. 
+# So for for each item, creates legend formatted
+
+plt.legend(labels=['%s, %1.3f %%' % (l, s) for l, s in zip(labels, sizes)]) 
+
+# show plot
+plt.show()
+```
+Next, let's create a boxplot
+```
+# Create box plot to compare the democrat verses republic state voter share values in 2016 
+df_line_dem = df[(df["year"] == 2016) & (df["party"] == "democrat")]
+df_line_dem['Voteshare'] = df_line_dem['candidatevotes'] / df_line_dem['totalvotes']
+df_line_rep = df[(df["year"] == 2016) & (df["party"] == "republican")]
+df_line_rep['Voteshare'] = df_line_rep['candidatevotes'] / df_line_rep['totalvotes']
+
+#define data
+# Create box plot to compare the democrat verses republic state voter share values in 2016 
+df_bplot_dem = df[(df["year"] == 2016) & (df["party"] == "democrat")]
+df_bplot_dem['Voteshare'] = df_bplot_dem['candidatevotes'] / df_bplot_dem['totalvotes']
+df_bplot_rep = df[(df["year"] == 2016) & (df["party"] == "republican")]
+df_bplot_rep['Voteshare'] = df_bplot_rep['candidatevotes'] / df_bplot_rep['totalvotes']
+
+#define data
+x1 = df_bplot_dem['Voteshare']
+x2 = df_bplot_rep['Voteshare']
+data = [x1, x2]
+# create figure size
+fig, ax = plt.subplots(figsize=(10, 6))
+# build a box plot
+ax.boxplot(data)
+# title and axis labels
+ax.set_title('Box Plot of Vote Share, 2016, n = 51 (50 states + DC)', fontsize = 15)
+ax.set_ylabel('Vote Share', fontsize = 12)
+ax.set_xlabel('Party', fontsize = 12)
+# add horizontal grid lines
+ax.yaxis.grid(True)
+labels = ('Democrat', 'Republican')
+plt.xticks(np.arange(len(labels))+1,labels)
+# show the plot
+plt.show()
+```
+Finally, we will create a line chart that shows from 1976 - 2016, the vote share of Republicans and Democrats in the state of Massachusetts.
+```
+# Create line plot of total votes from 1976 - 2016
+# create dataframes
 df_line_dem = df[(df["state"] == 'Massachusetts') & (df["party"] == "democrat")]
 df_line_dem['Voteshare'] = df_line_dem['candidatevotes'] / df_line_dem['totalvotes']
 df_line_rep = df[(df["state"] == 'Massachusetts') & (df["party"] == "republican")]
 df_line_rep['Voteshare'] = df_line_rep['candidatevotes'] / df_line_rep['totalvotes']
 
+# define plot size
+fig, ax = plt.subplots(figsize=(10, 6))
+# create x and y for dem line
 x1 = df_line_dem['year']
 y1 = df_line_dem['Voteshare']
-
+# create x and y for rep line
 x2 = df_line_rep['year']
 y2 = df_line_rep['Voteshare']
-
-
+#plot each line
 plt.plot(x1, y1, label = "Democrat", color = "blue")
 plt.plot(x2, y2, label = "Republican", color = "red")
+# x axis label
 plt.xlabel('Year')
-colors = ('blue', 'red')
-# Set the y axis label of the current axis.
+# y axis labl
 plt.ylabel('Percentage of Vote (%)')
-# Set a title of the current axes.
+# title
 plt.title('Proportion of Presidential Vote, 1976 - 2016')
 # show a legend on the plot
 plt.legend()
 # Display a figure.
 plt.show()
 ```
-
-```
-# Create pie chart that shows for a particular state in a particular year, share of vote totals
-import matplotlib.pyplot as plt
-
-# Create dataframe from the dataset that for the state of massaschutts has for 2016
-df_pie_chart = df[(df["year"] == 2016) & (df["state"] == "Massachusetts")]
-# Create new Variable 
-df_pie_chart['Voteshare'] = df_pie_chart['candidatevotes'] / df_pie_chart['totalvotes']
-
-df_pie_chart
-
-labels = df_pie_chart['candidate']
-sizes = df_pie_chart['Voteshare']
-colors = ['blue', 'red', 'yellow', 'white', 'pink', 'green', 'grey']
-fig1, ax1 = plt.subplots(figsize=(10, 6))
-ax1.pie(sizes, shadow=True, startangle=90, colors = colors)
-ax1.axis('equal')
-plt.title("Presidential Share of Vote in MA, 2016")
-plt.legend( loc = 3, labels=['%s, %1.3f %%' % (l, s) for l, s in zip(labels, sizes)])
-plt.show()
-plt.savefig('Mass2016Vote.png')
-```
-
 
 
