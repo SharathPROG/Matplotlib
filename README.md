@@ -6,24 +6,24 @@ Have questions about this tutorial? **Email me at: cmorehouse@clarku.edu**
 
 ## Background and Objectives
 
-Thank you for visiting my tutorial! This tutorial is designed for a beginner's level coder who is looking to learn about how they can create data visualizations from csv data. 
+Thank you for visiting my tutorial! This tutorial is designed for a beginner's level coder who is looking to learn how to create data visualizations from spreadsheet data in csv format. 
 
 Specifically, this tutorial aims to achieve three things:
 **(1)** Give a basic understanding of Pandas Dataframes 
 **(2)** Give a basic understanding of the matplotlib python library 
 **(3)** Give a basic understanding of how dataframes can be used to create data visualizations with matplotlib
 
-A lot of the tutorials that currently exist in this department do not operate from a a beginner's level of python, and that is what I hope to achieve with this tutorial. In addition, I hope you find the election data visualizations created with this code interesting, and the skills applicable to your own projects!
+A lot of the tutorials that currently exist that delve into these topics do not operate from a a beginner's level of python, and that is what I hope to achieve with this tutorial. In addition, I hope you find the election data visualizations created with this code interesting, and the skills applicable to your own projects!
 
 _Tech used for this tutorial: Google Colab, matplotlib python library, numpy python library, pandas package_ 
 
-Code for this tutorial can be found in the code folder. Happy Coding! 
+Code for this tutorial can be found in the code folder of this repo. Happy Coding! 
 
 ## Section 1: The basics of Pandas Dataframe 
 
-Pandas dataframe is a package commonly used to deal with data analysis. Pandas is a high-level data manipulation tool developed by Wes McKinney. It is built on the Numpy package and its key data structure is called the DataFrame.The documentation for the pandas dataframe came be found [here](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html). Using pandas dataframe simplifies the loading of data from external sources such as text files and databases, as well as providing ways of analysing and manipulating data once it is loaded into your computer. The features provided in pandas automate and simplify a lot of the common tasks that would take many lines of code to write in the basic Python langauge. Pandas is best suited for structured, labelled data, in other words, tabular data, that has headings associated with each column of data. 
+Pandas dataframe is a package commonly used to deal with data analysis. Pandas is a high-level data manipulation tool developed by Wes McKinney. It is built on the Numpy package and its key data structure is called the DataFrame. The documentation for the pandas dataframe came be found [here](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html). Using pandas dataframes simplifies the loading of data from external sources such as text files and databases, as well as providing ways of analysing and manipulating data once it is loaded into your computer. Pandas is best suited for structured, labelled data, in other words, tabular data, that has headings associated with each column of data. 
 
-DataFrame is a 2-dimensional labeled data structure with columns of potentially different types. The DataFrame represents tabular data, soft of like a spreadsheet. DataFrames are organised into colums (each of which is a Series), and each column can store a single data-type, such as floating point numbers, strings, boolean values etc. DataFrames can be indexed by either their row or column names. Each column of a Pandas DataFrame is an instance of pandas.Series, a structure that holds one-dimensional data and their labels.DataFrames allow you to store and manipulate tabular data in rows of observations and columns of variables.
+A Pandas dataframe is a 2-dimensional labeled data structure with columns of potentially different types. The DataFrame represents tabular data, sort of like a spreadsheet. DataFrames are organised into columns (each of which is a Series), and each column can store a single data-type, such as floating point numbers, strings, boolean values etc. DataFrames can be indexed by either their row or column names. Each column of a Pandas dataframe is an instance of pandas.Series, a structure that holds one-dimensional data and their labels.DataFrames allow you to store and manipulate tabular data in rows of observations and columns of variables.
 
 ![](images/dataframe.png)
 
@@ -31,14 +31,14 @@ Sources for this section can be found [here](https://pandas.pydata.org/pandas-do
 
 Let's try some basic coding with Pandas Dataframe. 
 
-First, you need to the relevant packages. Import NumPy and load pandas with this code: 
+First, you need to import the relevant packages. Import NumPy and load pandas with this code: 
 
 ```
 import numpy as np
 import pandas as pd
 ```
 
-Next, we will create a dataframe object from a dictionary. To create a dataframe, use Python dictionary of lists, the dictionary keys will be used as column headers and the values in each list as columns. 
+Next, we will create a dataframe object from a dictionary. To create a dataframe, create a dictionary, where the dictionary keys will be used as column headers and the values in each list as columns. 
 
 ```
 data = {'New England States': ['ME', 'VT', 'NH', 'MA', 'CT', 'RI'], 'Rank': [3, 4, 5, 2, 6, 1]} 
@@ -46,7 +46,7 @@ df = pd.DataFrame(data)
 df 
 ```
 
-Here, we've created a simple dataframe where column one is the abrievations for the six New England, and column two is my own personal rankings for each state (1 being the best, 6 the worst) (full disclosure: I'm from Connecticut). The variable data is a Python variable that refers to the dictionary that holds your rank data. It also contains the labels of the columns. 
+Here, we've created a simple dataframe where the first column is the abrievations for the six New England, and second column is my own personal rankings for each state (1 being the best, 6 the worst) (full disclosure: I'm from Connecticut). The variable data is a Python variable that refers to the dictionary that holds your rank data. It also contains the labels of the columns. 
 
 Your output should look like this:
 
@@ -63,9 +63,7 @@ Your output now looks like this:
 
 ![](images/index_dict.png)
 
-Notice the difference? Now that we have a dictionary, what types of things can we do with it?
-
-What if we want to sort the dataframe based on the ranking value? We can achieve this with the following code:
+Notice the difference? Now that we have a dataframe, we can do all sorts of things! For example, what if we want to sort the dataframe based on the ranking value? We can achieve this with the following code:
 
 ```
 df.sort_values(by=['Rank'])
@@ -78,9 +76,9 @@ This is a simple example of the many ways once you have a dataframe you can play
 
 ## Section 2: The basics of the python library matplotlib 
 
-Matplotlib a comprehensive library for creating static, animated, and interactive visualizations in Python. This tutorial is for beginners, and thus we will only explore how to create static visualizations. 
+Matplotlib is a comprehensive library for creating static, animated, and interactive visualizations in Python. This tutorial is for beginners, and thus we will only explore how to create static visualizations. 
 
-For basic application, I like to break down the process into five parts to using matplotlib when you are trying to create a static data visualization. First, you need to establish or data munge. Second, you need to define your variables. Third, you need to plot those variables. Fourth, you do "all the extra stuff"; like labeling and gridlines. Finaly, you display your plot. Sound easy enough? Let's try it.
+For basic application, I break down the process into five parts to simplify using matplotlib. First, you need to import packages and create/establish your data and clean that data if necessary. Second, you need to define your variables. Third, you need to plot those variables. Fourth, you do "all the extra stuff"; like labeling and gridlines. Finaly, you display your plot. Sound easy enough? Let's try it.
 
 _Step 1. Import Packages and Create data/Data Munge_
 
@@ -92,7 +90,7 @@ import numpy as np
 import pandas as pd 
 ```
 
-In the application section, we will learn how to take data from a spreadsheet in csv format, and by using dataframes establish variables that are plotted with matplotlib. In this section, however, let's create our own data for simplicity. Since we're creating it ourselves, there's no cleaning necessary. Let's create a perfectly linear line graph. 
+In the application section, we will learn how to take data from a spreadsheet in csv format, and how to use pandas dataframes to establish variables that are plotted with matplotlib. In this section, however, let's create our own data for simplicity. Since we're creating it ourselves, there's no cleaning necessary. Let's create data that will create a perfectly linear line graph. 
 
 ```
 # Create Data
@@ -102,7 +100,7 @@ Age = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 _Step 2. Define Variables and figure and axes._
 
-Since we defined our variables in the first section, this is not necessary. In the application section, when we are working with dataframes, we're going to want to define our variables equal to portions of the dataframe. We do however want to write the following code to define the plot size before we plot our data. 
+Since we defined our variables in the first section, this is not necessary. In the application section, when we are working with dataframes, at this stage we will often define variables equal to subsets of the dataframe i.e. a certain column. In this simple example, however, this is not necessary, but we still want to write the following code to define the plot size before we plot our data. 
 
 ```
 fig, ax = plt.subplots(figsize=(10, 6)) # this creates the plot size
@@ -110,7 +108,7 @@ fig, ax = plt.subplots(figsize=(10, 6)) # this creates the plot size
 
 _Step 3. Let's plot!!_
 
-Inside the parantheses, insert your x variable first, comma, and then your y variable. On thing to note is that in the parantheses you also can edit the output of the data. So, if you want the line to be red, you add a comma after the variables with color = "red". 
+Inside the parantheses, insert your x variable first, comma, and then your y variable. On thing to note is that in the parantheses you also can edit the output of the data. So, if you want the line to be red, you add a comma after the variables with color = "red". The same could be done for other colors. 
 
 ```
 plt.plot(Year, Age, color = "red")
@@ -118,7 +116,7 @@ plt.plot(Year, Age, color = "red")
 
 _Step 4. All the extra stuff_
 
-Now comes the fun part. Warning: It can also be the most challening if the type of changes your are trying to implement into your visualization are not basic. However, for this application, let's still with some basic labeling, color changes, adding gridlines, and shifting font sizes, and creating the plot size. 
+Now comes the fun part. Warning: It can also be the most challenging part if the type of changes your are trying to implement into your visualization are not basic. However, for this application, let's add some basic labeling, color changes, gridlines, and different than default font sizes. 
 
 ```
 plt.title('Age by Year', fontsize=14) # create title, and add a comma with your fontsize
@@ -139,7 +137,7 @@ Your output should look something like this:
 
 ![](images/linegraphbasic.png)
 
-While we created a line graph in this section, these principles will be applied to each visual we create in the application section. Now that we have the basics, let's move on and see what we can create with some real data! 
+While we created a line graph in this section, these principles will be applied to each data visual we create in the application section. Now that we have the basics, let's move on and see what we can create with some real data! 
 
 ## Section 3: Application
 
@@ -151,18 +149,18 @@ For this tutorial, we are using U.S. President Data from 1976 - 2016 from MIT El
 
 ![](images/excel.png)
 
-As you can see, csv contains columns year, state, state-po (state's abbrievation), state_fips, state_cen, state_ic, office, candidate, party, writein, candidatevotes, total votes, version and notes. The documentation for these variables can be found [here](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/42MVDX). For this tutorial, we are particularly interested in the variables year, state, party, candidatevotes and totalvotes and the data visuals we can create with these variables. You can download the csv directly from this repository in the data folder. 
+As you can see, the csv contains columns for year, state, state-po (state's abbrievation), state_fips, state_cen, state_ic, office, candidate, party, writein, candidatevotes, total votes, version and notes. The documentation for these variables can be found [here](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/42MVDX). For this tutorial, we are particularly interested in the variables year, state, party, candidatevotes and totalvotes and the data visuals we can create with these variables. You can download the csv directly from this repository in the data folder. 
 
 ### Tutorial 
 
-Let's first import the csv file with the data. Remember, we are using Google Colab for this tutorial. After running this in colab, you will need to open up your file from your computer. 
+Let's first import the csv file with the data. Remember, we are using Google Colab for this tutorial. After running this in colab, you will need to open up the file downloaded from this repo to your computer to load into Google Colab. 
 
 ```
 from google.colab import files
 uploaded = files.upload()
 ```
 
-First, we need to create our default pandas dataframe from the csv file. We're going to use this dataframe to build all of our narrowed down versions for our future visualizations. To do this, we use the following code to set the variable "df" for dataframe equal to the csv file reader. This dataset is very large, so we can use .head() to print the first few items and .tail() to print the last few items:
+First, we need to create our default pandas dataframe from the csv file. We're going to use this dataframe to build subset dataframes for our future visualizations. To do this, we use the following code to set the variable "df" for dataframe equal to the csv file reader. This dataset is very large, so we can use .head() to print the first few items and .tail() to print the last few items:
 
 ```
 df = pd.read_csv("1976-2016-president.csv")
@@ -173,9 +171,10 @@ Your output should look like this:
 
 ![](images/basicoutput.png)
 
-Now we're ready to dive into our visualizations! And what better way to start than with a BAR CHART! This bar chart will compare the total votes Hillary Clinton, the democratic nominee received verses the total votes Donald Trump, the republican candidates, received in 2016. Our first stem is to create a new dataframe from our default dataframe that we created above that only contains rows that in the column "year" the cell contains 2016. So, we are using a conditional. 
+Now we're ready to dive into our visualizations! And what better way to start than with a BAR CHART! This bar chart will compare the total votes for Hillary Clinton, the democratic nominee in 2016 received verses the total votes Donald Trump, the republican nominee in 2016 received. 
 
-Now comes the fun part: indexing and slicing data. Documentation on this can be found [here](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html). We will use parts of these techniques for each of our visualization creations. Another great article that delves further into the topic can be found [here](https://medium.com/dunder-data/selecting-subsets-of-data-in-pandas-39e811c81a0c).
+
+Now comes the fun part: indexing and slicing data. Documentation on this can be found [here](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html). We will use parts of these techniques for each of our visualization creations. Another great article that delves further into the topic can be found [here](https://medium.com/dunder-data/selecting-subsets-of-data-in-pandas-39e811c81a0c). Our first job is to create a new dataframe from our default dataframe that we created above such that the new dataframe only contains rows that in the column "year" are 2016. So, we are using a conditional. 
 
 After we created the new dataframe containing just the year 2016, we will use a handy property of dataframes .loc, which allows us to access a group of rows and columns by label or boolean array. Documentation can be found [here](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html). In our application, we use the loc property to set the variable data equal to the df_votes dataframe that only contains the rows that the column "party" has "democrat" or "republican" string values. Notice we use "|", which in Python means OR. 
 
@@ -196,7 +195,11 @@ Your output should look like this:
 
 ![](images/cvotes.png)
 
-You may notice Hillary Clinton got almost three million more votes... damn that Electoral College! Now, we'll create a bar chart with matplotlib. We follow the same basic format as in the basics section, just with slightly different formating because we are working with dataframes. The most complicated part of this section is the formating of the y axis, using matplotlib.ticker, to make it so that the values are displayed in the millions. Documentation for matplotlib.ticker can be found [here](https://matplotlib.org/api/ticker_api.html). That particular line of code was taken from Christopher Flynn's blog, link found [here](https://flynn.gg/blog/better-matplotlib-charts/). Note from this code that when using matplotlib, you will run into formating roadblocks all the time depending on the niche output your are trying to accomplish. Luckily, the internet can often give you exactly the answers you are looking for, like in this example. 
+You may notice Hillary Clinton got almost three million more votes...but we know she lost the 2016 election. Darn that Electoral College! 
+
+Now, we'll create a bar chart with matplotlib. We follow the same basic format as in the basics section, just with slightly different formating because we are working with dataframes. We set the plot size (step 2); plot using plt.bar and define colors (step 3), format the extra stuff like labels, titles, and axis (step 4) and finally show out plot (step 5). 
+
+The most complicated part of this section is that to format the y axis, we use matplotlib.ticker, to make it so that the values are displayed in the millions. Documentation for matplotlib.ticker can be found [here](https://matplotlib.org/api/ticker_api.html). That particular line of code was taken from Christopher Flynn's blog, link found [here](https://flynn.gg/blog/better-matplotlib-charts/). Note from this code that when using matplotlib, you will run into formating roadblocks all the time depending on the niche output your are trying to accomplish. Luckily, the internet can often give you exactly the answers you are looking for, like in this example. 
 
 ```
 
@@ -238,9 +241,11 @@ The output for this code is here:
 
 ![](images/bargraph.png)
 
-Next we will create is a pie chart with matplotlib. Using the same data, we want to create a pie chart that shows us for a particular state, I have chosen Massachusetts, what proportion of the vote did each candidate on the ballot get in 2016. We follow the same process as the bar chart where we using pandas dataframe techniques to slice a particular portion of the data. Here, we create the new dataframe df_pie_chart for just the subset of data that is from the year 2016, and from the state Massachusetts. Take note of the "&" AND syntax being used. We then create a new column in the dataframe, Voteshare, equal to candidate votes divided by the total votes, to give us the vote percentage that that particular candidate received out of the total votes in MA for the presidency in 2016. 
+Next we will create is a pie chart with matplotlib. Using the same data, we want to create a pie chart that shows us for a particular state, I have chosen Massachusetts, what proportion of the vote did each candidate on the ballot get in 2016. We follow the same process as the bar chart where we using pandas dataframe techniques to slice a particular portion of the data. Here, we create the new dataframe df_pie_chart for just the subset of data that is from the year 2016, and from the state Massachusetts. Take note of the "&" AND syntax being used. After creating a dataframe with this subset, we then create a new column in the dataframe, Voteshare, equal to candidate votes divided by the total votes, to give us the vote percentage that that particular candidate received out of the total votes in MA for the presidency in 2016. 
 
-After that, follow our same basic matplotlib steps where we create out plot size, define some variables that we will embed into our pie plot. One of the trickiest parts of "the extra stuff" step for this portion is that we need to use a for loop to create the legend. Essentially how this works is that the label, which is equal to the candidate name, seen as "l" in this code, and sizes, or the votershare, seen as "s" in this code, are formatted in the first portion of the code, and then for each item essentially pulled into the legend. This code was derived from Stackoverflow. *find post*
+After that, follow our same basic matplotlib steps where we create out plot size. Notice that we do as part of (step 2) along with defining the plot size, define some variables that we will use in step (3) and step (4), for plotting the pie and when adding the extra stuff. So, we create the variable labels equal to the dataframe column "candidate" and the variable sizes equal to the dataframe column "sizes." Colors wanted to display in the pie are also set equal to colors such that this variable can be used when plotting the pie wit the ax1.pie() function. 
+
+One of the trickiest parts of "the extra stuff" step for this portion is that we need to use a for loop to create the legend. Essentially how this works is that the label, which is equal to the candidate name, seen as "l" in this code, and sizes, or the votershare, seen as "s" in this code, are formatted in the first portion of the code, and then for each item essentially pulled into the legend. This code was derived from a post on Stackoverflow found [here](https://stackoverflow.com/questions/44076203/getting-percentages-in-legend-from-pie-matplotlib-pie-chart). Again, when working with matplotlib, you will often was a very specific formatting output, like here where we wanted a legend which specified the variable name and value, and the internet is your best friend to find bits of code that can produce that output. 
 
 ```
 # Create pie chart that shows for a particular state in a particular year, shows share of vote totals
@@ -272,11 +277,11 @@ Your output should look like this:
 
 ![](images/pieplotactual.png)
 
-Next, let's create a box plot. Matplotlib is great for generating statistical visualizations. Box plots are created from descriptive statistics from a dataset. For our box plot, we want to be able to visualize the descriptive statistics for the vote shares in all fifty states + Washington, D.C. of Hillary Clinton and Donald Trump in 2016. The line in a box plot is the median, and the box forms the interquartile range, or the 25th and 75th percentile. Outliers are shown as dots.
+Next, let's create a box plot. Matplotlib is great for generating statistical visualizations. Box plots are created from descriptive statistics from a dataset. For our box plot, we want to be able to visualize the descriptive statistics for the vote shares in all fifty states + Washington, D.C. of Hillary Clinton and Donald Trump in 2016. The line in a box plot is the median, and the box forms the interquartile range, or the 25th and 75th percentile. Outliers are shown as dots. More information about box plots can be interpreted and their purpose can be found [here](https://www.statisticshowto.com/probability-and-statistics/descriptive-statistics/box-plot/). 
 
-To do this, we start by creating a new box plot dataframes for both democrat and republican data in 2016. These will form each of our boxes. We also need to create again a Voteshare variable. Hopefully by now, you're starting to get the basic feel for how to slice a subset of a dataframe to create a new dataframe that then can be used to build a matplotlib visualization. 
+To do this, we start by creating new box plot dataframes for both democrat and republican data in 2016. Data in these dataframes will form each of our boxes. We also need to create again a Voteshare variable. Hopefully by now, you're starting to get the basic feel for how to slice a subset of a dataframe to create a new dataframe that then can be used to build a matplotlib visualization. 
 
-After create the new dataframes, we set these dataframes equal to two variables, x1 and x1. These are then set equal to a data variable. We can then use that data variable to plot the boxplot! In the "extra stuff" section, we add grid lines in order to better visualize the plots. You also may notice some tricky formating under labels. We use the plt.xticks() function to assign labels to both box plots on the x axis. Now let's plot!
+After create the new dataframes, we set these dataframes equal to two variables, x1 and x1. These are then set equal to a data variable. We can then use that data variable to plot the boxplot! In the "extra stuff" section, we add grid lines in order to better visualize the plots. You also may notice some tricky formatting under labels. We use the plt.xticks() function to assign labels to both box plots on the x axis. Now let's plot!
 
 ```
 # Create box plot to compare the democrat verses republic state voter share values in 2016 
@@ -309,9 +314,9 @@ Your output should look like this. Let's see what we can learn from these visual
 
 ![](images/boxplot.png)
 
-Finally, we will create a line chart that shows from 1976 - 2016, the vote share of Republicans and Democrats in the state of Massachusetts. I hope by now you feel like you've got the hang of this. Again, we create a new dataframes from the original dataframe with a subset of the votes. For this visualization, we want subsets of the state of Massachusetts, and the party. We create again the variable Voteshare. 
+Finally, we will create a line chart that shows from 1976 - 2016, the vote share of Republicans and Democrats in the state of Massachusetts. I hope by now you feel like you've got the hang of this. Again, we create a new dataframes from the original dataframe with a subset of the data for for the state of Massachusetts and for either the democrat or republican party. We create again the variable Voteshare. 
 
-Then, like always, we set our plot size. This we set our variables equal to a particular column of data. Then we plot, while also labeling and coloring the data. 
+Then, like always, we carry out the five steps. We set our plot size, we plot twice because we are plotting two lines, we write code for the "extra stuff" like labels and titles, and then we plt.show(). 
 ```
 # Create line plot of total votes from 1976 - 2016
 # create dataframes
